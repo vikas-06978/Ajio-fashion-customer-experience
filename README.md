@@ -1,111 +1,131 @@
 # Refining Product Data and Pricing for an Enhanced Customer Experience in Online Fashion Retail
-# Project Background
+# Purpose
 
-AJIO, part of Reliance Retail, is one of India’s largest online fashion retailers, offering a massive range of products for men, women, and kids. Despite its popularity, the platform has faced challenges such as inconsistent product data (e.g., brand and color), unpredictable pricing and discounting, and an imbalance in product offerings between genders.
-This project, conducted as part of the IITM BS program capstone, leverages a Kaggle dataset with over 367,000 AJIO product listings to identify business-impacting patterns and provide actionable recommendations to enhance customer experience and drive growth.
+The objective of this project is to help AJIO, one of India’s largest online fashion retailers (part of Reliance Retail), address critical challenges in product data quality, pricing transparency, and catalog balance. Clean, structured, and actionable data supports better business decisions, targeted growth, and a smoother customer experience.
+# What This Project Covers
 
-# Key Insights and Recommendations are provided on four focus areas:
+  - ### Business Problem:
+    AJIO’s catalog suffers from messy product data (inconsistent brand and color names), unpredictable discounts, and a skewed product mix between men’s and women’s sections. These pain points can lead to poor search quality, erode customer trust, and block sales growth.
 
-  Data Quality
+  - ### Project Goal:
+    To clean and analyze a real-world AJIO product dataset (~367,000 listings from Kaggle), identify meaningful pricing and assortment patterns, and deliver recommendations that can drive more reliable search, fairer pricing, and stronger growth.
 
-  Pricing and Discounts
+# Data & Methods
 
-  Gender Balance in Catalog
+## Dataset:
 
-  Revenue and Brand Performance
+  - Publicly available from Kaggle (“Ajio Fashion Clothing”), comprising 367,172 products after cleaning.
 
-# Supporting Resources:
+  - Key columns: Brand, Product Description, Gender Category, Discount Price, Original Price, Color.
 
-  SQL scripts for data cleaning
+## Tools and Techniques:
 
-  SQL queries on business questions
+  - Python (Pandas, FuzzyWuzzy) for data wrangling and cleaning.
 
-  Interactive Tableau dashboard
+  - ANOVA, t-tests, and correlation analysis for identifying pricing and discount trends.
 
-# Data Structure & Initial Checks
+  - Visualizations with Matplotlib and Seaborn to surface business critical patterns.
 
-# The primary dataset consists of 367,172 products and includes the following attributes:
+# Data Cleaning & Transformation
 
-  Brand: Standardized to 1,972 unique entries post-cleaning
+  - **Brands:**
+    Cleaned and standardized to 1,972 unique entries (e.g., “allensolly” corrected to “allen-solly”).
 
-  Color: Reduced from over 4,000 inconsistent variations to 33 standard color names
+  - **Colors:**
+    Reduced >4,000 messy names and typos to just 33 standard colors.
 
-  Description: Short product summaries
+  - **Discounts:**
+    Removed negative or implausible discounts.
 
-  Gender Category: Mostly 'Men' or 'Women'
+  - **Outliers:**
+    Managed using the IQR method; this keeps the core analysis focused and trustworthy.
 
-  Original_Price / Discount_Price: Numerical, ranging from ₹99–₹230,800
+# Final Clean Dataset Summary:
 
-  Discount_Percent: 0%–93.99% after cleaning
+text
+Total Products: 367,172
+Brand Names: 1,972 (post-cleaning)
+Color Categories: 33 (down from 4,296)
+Discount Price Range: ₹81 to ₹230,800
+Discount Percent Range: 0.0% to 93.99%
+Gender Distribution: 211,534 Women’s (57.6%), 155,638 Men’s (42.4%)
 
-Entity-Relationship Diagram:
-(Insert ERD illustration here if available)
-Executive Summary
+# Analysis & Key Insights
+  - ### Pricing & Discounts
 
-# Overview of Findings
-AJIO’s vast catalog is primarily budget and mid-range fashion, with women’s products comprising 58% of offerings and driving the majority of revenue. While discounting is common (average ~41%, median nearly 50%), luxury items (6% of catalog) receive unusually large and variable discounts, clouding brand value. Standardizing product data and addressing gender assortment imbalances present clear opportunities for customer experience and sales growth.
+  - Average Discount Percent: 41.2%, Median Discount: 49.96%.
 
-(Insert a dashboard snapshot or high-level visualization here)
-Insights Deep Dive
-# 1. Data Quality
+  - Budget to mid-range dominates: Most products fall under ₹5,000, and discounts are heaviest in these bands.
 
-  Main Insight 1: Cleaning reduced color categories from 4,000+ to 33 and fixed thousands of brand typos (e.g., “allensolly” → “allen-solly”), improving catalog trust and search relevance.
+  - ### Luxury Segment:
+    Accounts for 6.4% of the catalog. These products show high variance in discounts, some deeply discounted, some hardly at all, which can erode luxury brand value.
 
-  Main Insight 2: Standardized attributes drastically improved analytics reliability and user experience.
+  - ### Strong Correlation:
+    Original price and discount price are closely linked (Pearson r = 0.81).
 
-  Main Insight 3: The top five colors—blue, black, white, gray, and green—make up almost half the entire product base, indicating strong and clear customer preferences.
+## Gender & Assortment
 
-(Visualization: Bar chart of top colors and brands after cleaning)
-# 2. Pricing and Discounts
+  - ### Women’s products:
+    57.6% of the catalog, 56% of the total estimated revenue.
 
-  Main Insight 1: Budget and mid-range items (~94% of the catalog) are heavily discounted; median discount is 50%.
+  - ### Men’s products:
+    Fewer offerings, especially in premium and luxury, though there are proportionally more high-ticket outliers.
 
-  Main Insight 2: Luxury goods (above ₹10,000) receive inconsistent and sometimes excessive discounts, risking brand dilution.
+  - ### Clear opportunity:
+    Expanding men’s premium and luxury choices can drive new growth.
 
-  Main Insight 3: Strong price/discount correlation found (Pearson r = 0.81), indicating rational markdowns for most segments but outlier handling issues in luxury.
+## Brands & Revenue
 
-(Visualization: Boxplots of discount % by price band; scatterplot original vs. discount price)
-# 3. Gender Balance in Catalog
+  - Top 15 brands (Jolie-Robe, Max, Puma, etc.) capture a disproportionately high share of listings and revenue.
 
-  Main Insight 1: Women’s options represent 57.6% of catalog listings and 56% of sales; men’s premium/luxury is significantly underrepresented.
+  - Predominant colors (blue, black, white, gray, green) make up nearly half of all products, indicating reliable shopper preferences.
 
-  Main Insight 2: Women have more choices across all price bands, especially in mid and premium.
+# Visual Highlights
 
-  Main Insight 3: Men’s catalog features higher outliers in price, but fewer items overall, highlighting a gap for targeted expansion.
+(Add visuals here, such as bar charts of top colors, boxplots for discount distribution, heatmaps for gender price bands, and treemaps of brand share. Placeholders are provided for your visuals.)
+1. **Top 15 Colors (Bar Chart):** 
 
-(Visualization: Heatmap of gender vs price band; boxplot of discounted price by gender)
-# 4. Revenue and Brand Performance
+   - Visualizes the 15 most common, cleaned color categories (after wrangling thousands of typos).
+   - Clearly shows customer color preferences and catalog concentration.
 
-  Main Insight 1: Women’s fashion not only leads in volume but in revenue contribution (₹1.32M vs. ₹0.96M for men).
+<img width="639" height="515" alt="image" src="https://github.com/user-attachments/assets/e2dd84ba-c557-4336-9531-188902321276" />
 
-  Main Insight 2: A handful of brands—Jolie-Robe, Max, Puma—dominate sales, suggesting strategic focus areas for partnerships and stocking.
+2. **Discount Percentage by Price Band (Boxplot):**
+   
+    - Displays the distribution of discount percentages across different price segments (Budget, Mid-range, Premium, High-End, Luxury).
+    - Clearly illustrates how discount strategies vary with product pricing and highlights where the most substantial discounts or inconsistencies occur.
 
-  Main Insight 3: Consistently performing colors and brands are key levers for inventory and marketing optimizations.
+<img width="825" height="435" alt="image" src="https://github.com/user-attachments/assets/a7896f94-d671-46fa-b9fd-dddc6c9a629e" />
 
-(Visualization: Treemap of top brands, revenue by segment)
-Recommendations
+   
 
-# Based on the findings, the following actionable recommendations are made for stakeholders:
+# What This Means & Recommendations
 
-  Automate Data Standardization: Regular audits and cleaning of product data to maintain accuracy and improve search/discoverability.
+  - ### Continuous Data Hygiene:
+    Regular cleaning and validation are essential for scalable search, recommendations, and analytics.
 
-  Rebalance Product Assortment: Expand men’s premium/luxury offering to tap into underserved segments and boost sales.
+  - ### Strategic Discounting:
+    Institute standard rules for luxury discounts to avoid erratic deep cuts that degrade brand value.
 
-  Refine Discount Strategy for Luxury: Institute clear guidelines to balance inventory movement with luxury branding and minimize deep, random discounts in high-value ranges.
+  - ### Balanced Expansion:
+    Prioritize men’s assortment growth in premium and luxury, while maintaining strong offerings for women.
 
-  Prioritize Top Colors/Brands: Ensure top performing brands and colors remain well-stocked and central in campaigns.
+  - ### Inventory and Marketing:
+    Focus on best-selling colors and top brands for stocking and promotion.
 
-  Dynamic, Data-Driven Discounting: Use analysis to calibrate discounts across price bands for optimal profitability and satisfaction.
+  - ### Data-Driven Decision-Making:
+    Monitor patterns and realign discounting by price band to optimize profits and customer satisfaction.
 
+# Impact
 
-# Assumptions and Caveats
+## By addressing data quality and using analysis-driven recommendations, AJIO can:
 
-  All data is sourced from a public Kaggle dataset, representing the state of the AJIO catalog at the time of scraping.
+  - Boost customer trust and shopping efficiency.
 
-  Product URLs and images were excluded for this analysis; only core attributes were used.
+  - Improve conversion and sales with smarter discount and assortment strategies.
 
-  Outliers were identified and managed using IQR for both price features; this may exclude some genuine luxury/unusual items from the majority analysis.
+  - Strengthen its competitive position as India’s digital fashion leader.
 
-  Certain business insights rely on segmentation thresholds (e.g., luxury defined as above ₹10,000) that are agreed with business norms, but these can be tuned as needed.
+# About
 
-  Gender categories are based on available product tags and may not fully reflect inclusive segmentations.
+This project was completed as part of the BS Data Science & Applications Capstone at IIT Madras.
